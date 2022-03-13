@@ -1,0 +1,70 @@
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <head>
+        <title>Controle remoto</title>
+    
+    <style>
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container input{
+    font-size: 3em;
+}
+
+    </style>
+    
+<script type="text/javascript">
+
+function comando(parametro){
+console.log(parametro);
+
+if (parametro == null){
+    parametro = document.getElementById("comando").value;
+}
+
+// parametro = document.getElementById("comando").value;
+
+fetch('/comando/'+parametro)
+   .then(response => response.text())
+   .then(text => console.log(text));
+
+   parametro = null;
+
+}
+
+</script>
+
+
+    </head>
+
+    <body>
+<article>
+<section>
+
+
+<div class="container">
+
+
+<input type="text" id="comando">
+<input id="botao1" type="button" value="Enviar" onclick="comando();">
+
+<input type="button" value="Space" onclick="comando('space');">
+<input type="button" value="backspace" onclick="comando('backspace');">
+<input type="button" value="enter" onclick="comando('enter');">
+<input type="button" value="esc" onclick="comando('esc');">
+<input type="button" value="alt+tab" onclick="comando('alt+tab');">
+<input type="button" value="esquerda" onclick="comando('left');">
+<input type="button" value="direita" onclick="comando('right');">
+</div>
+
+</section>
+
+</article>
+
+        
+    </body>
+</html>
